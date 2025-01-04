@@ -28,16 +28,17 @@ jobs:
         run: |
           output=$(cat ./cyberchase/test_results.txt)
           url=$(echo $output | awk -F';' '{printf "https://progress-bar.xyz/%d/?width=200&title=%s", $1, $2}')
-          echo $url
           sed -i "/!\[Test Progress\](.*)/c\![Test Progress]($url)" ./README.md
-
-          cat ./README.md
 
       - name: Commit and push README update
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ./README.md
-          git commit -m "Update README with test progress"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
-
+          # Check if there are any changes before committing
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update README with test progress"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          fi

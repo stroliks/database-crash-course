@@ -1,2 +1,1 @@
--- Посчитать количество уникальных названий эпизодов
-
+select COUNT(DISTINCT title) FROM episodes;

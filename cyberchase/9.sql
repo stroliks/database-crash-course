@@ -1,2 +1,2 @@
--- Посчитайте количество эпизодов, выпущенных с 2002 по 2007 год
-
+SELECT  COUNT() FROM episodes
+WHERE air_date > "2001-31-12" AND air_date < "2008-01-01";

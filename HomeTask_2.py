@@ -81,13 +81,53 @@ ON countrylanguage.CountryCode = country.`Code`
 WHERE countrylanguage.`Language` = "English" AND countrylanguage.Percentage <50
 
 # 16
-# SELECT city.`Name`, city.Population , country.Region
-# FROM city
-# JOIN country
-# ON country.`Code` = city.CountryCode
-# HAVING COUNT(country.Region)
+SELECT city.`Name`, city.Population, country.Region
+FROM city
+JOIN country
+ON country.`Code` = city.CountryCode
+WHERE COUNT (country.Region IN (SELECT distinct country.Region FROM country)) <=3
+order BY country.Region, city.Population DESC
+LIMIT 60;
+ПОД ОГРОМНЫМ ВОПРОСОМ!!!
 
 # 17
+провалено
+
+
+
 # 18
+
+провалено
+
 # 19
+
 # 20
+SELECT country.Region, AVG(country.Population), COUNT(country.`Name`)
+FROM country
+WHERE country.Population > 10000000
+GROUP BY country.Region
+ORDER BY AVG(country.Population) DESC
+LIMIT 5;
+
+# 21
+SELECT city.`Name`, COUNT(country.`Name`)
+FROM country
+JOIN city
+ON city.ID = country.Capital
+GROUP by city.`Name`
+ORDER BY COUNT(country.`Name`) DESC
+
+не пойму куда вставить WHERE COUNT(country.`Name`) > 1
+
+# 22
+SELECT country.`Name`, SUM(city.Population)
+FROM country
+JOIN city
+ON city.CountryCode = country.`Code`
+WHERE country.Population > 50000000
+GROUP by country.`Name`
+ORDER BY COUNT(country.`Name`) DESC
+LIMIT 5;
+
+
+

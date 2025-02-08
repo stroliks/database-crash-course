@@ -135,3 +135,12 @@ INSERT INTO Tournaments (`prize`, `player_1`, `player_2`, `date`) VALUES ('30600
 INSERT INTO Tournaments (`prize`, `player_1`, `player_2`, `date`) VALUES ('322000', '27', '3', '2034-10-07T15:26:14.879');
 INSERT INTO Tournaments (`prize`, `player_1`, `player_2`, `date`) VALUES ('109000', '7', '15', '2035-09-19T20:46:14.879');
 INSERT INTO Tournaments (`prize`, `player_1`, `player_2`, `date`) VALUES ('491000', '17', '8', '2036-09-01T02:06:14.879');
+
+
+UPDATE ___Tournaments
+SET winner = player_1 
+WHERE ROUND(RAND(), 0) = 0;
+
+UPDATE ___Tournaments
+SET winner = player_2 
+WHERE winner = '';

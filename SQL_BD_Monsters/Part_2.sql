@@ -1,3 +1,7 @@
+RENAME TABLE  Monsters TO ___Monsters;
+RENAME TABLE  Tournaments TO ___Tournaments;
+RENAME TABLE  Couches TO ___Couches;
+
 
 UPDATE ___Monsters
 INNER JOIN ___Tournaments
@@ -7,7 +11,7 @@ WHERE ___Monsters.id = ___Tournaments.winner;
 
 
 ALTER TABLE ___Tournaments
-ADD COLUMN `Arena` INTEGER UNSIGNED;
+ADD COLUMN `Arena` VARCHAR(50);
 
 
 CREATE TABLE `___Arena` (

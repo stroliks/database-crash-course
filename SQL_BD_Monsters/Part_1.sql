@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `Tournaments` (
 `player_1` INTEGER UNSIGNED NOT NULL,
 `player_2` INTEGER UNSIGNED NOT NULL,
 `winner` VARCHAR(100) NOT NULL,
-`date` TIMESTAMP NOT NULL,
+`date` datetime NOT NULL,
  CONSTRAINT fk_tournament_monster1
  FOREIGN KEY (`player_1`)
  REFERENCES `Monsters`(`id`),
@@ -137,10 +137,10 @@ INSERT INTO Tournaments (`prize`, `player_1`, `player_2`, `date`) VALUES ('10900
 INSERT INTO Tournaments (`prize`, `player_1`, `player_2`, `date`) VALUES ('491000', '17', '8', '2036-09-01T02:06:14.879');
 
 
-UPDATE ___Tournaments
+UPDATE Tournaments
 SET winner = player_1 
 WHERE ROUND(RAND(), 0) = 0;
 
-UPDATE ___Tournaments
+UPDATE Tournaments
 SET winner = player_2 
 WHERE winner = '';
